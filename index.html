@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">  
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/javascript" src="interaction.js">
+
+    <title>Daily Report</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-custom">
+        <a class="navbar-brand ml-4" href="#">
+            <img src="Images/Logomdpi.png" width="204" height="54" alt="company-logo">
+        </a>
+        <p id="date_format" class="navbar-text mr-4">
+            <script>
+                 let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                 let date_string = new Date().toLocaleDateString("pt-BR", options);
+                 document.write(date_string.charAt(0).toUpperCase() + date_string.slice(1)); 
+            </script>
+        </p>
+    </nav>
+    <h1>Vai tomar no cu </h1>
+
+  </body>
+</html>

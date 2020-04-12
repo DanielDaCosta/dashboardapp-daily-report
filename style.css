@@ -1,0 +1,13 @@
+.navbar-custom{
+    background-color: #073763ff !important;
+}
+/* change the brand and text color */
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,.8);
+}
+/* .navbar .navbar-brand{
+    color: rgb(255, 255, 255); 
+}
+.navbar .navbar-brand:hover{
+    color: rgb(255, 255, 255); 
+} */
