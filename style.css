@@ -1,13 +1,40 @@
+
+/* Nav Bar */
+
+/* Navbar background color */
 .navbar-custom{
     background-color: #073763ff !important;
 }
 /* change the brand and text color */
 .navbar-custom .navbar-text {
-    color: rgba(255,255,255,.8);
+    color: white;
 }
-/* .navbar .navbar-brand{
-    color: rgb(255, 255, 255); 
+
+/* Section 
+backgroud color and text color */
+
+.new-section {
+    /* border: 1px solid red; */
+    background-color:  #073763ff;
+    color: white;
 }
-.navbar .navbar-brand:hover{
-    color: rgb(255, 255, 255); 
-} */
+
+/* Unored list 
+Dashed list */
+
+ul {
+    list-style-type: none;
+}
+
+ul > li:before {
+    content: "–"; /* en dash */
+    position: absolute;
+    margin-left: -1.1em; 
+}
+
+/* Images Size */
+
+.image-size-column {
+    height: 100%;
+    width: 100%;
+}

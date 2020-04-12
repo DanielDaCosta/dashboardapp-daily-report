@@ -12,20 +12,115 @@
 
     <title>Daily Report</title>
   </head>
+
   <body>
+    <!-- Nav Bar -->
     <nav class="navbar navbar-custom">
         <a class="navbar-brand ml-4" href="#">
             <img src="Images/Logomdpi.png" width="204" height="54" alt="company-logo">
         </a>
-        <p id="date_format" class="navbar-text mr-4">
+        <!-- Current Date -->
+        <h5 id="date_format" class="navbar-text mr-4">
             <script>
                  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                  let date_string = new Date().toLocaleDateString("pt-BR", options);
                  document.write(date_string.charAt(0).toUpperCase() + date_string.slice(1)); 
             </script>
-        </p>
+        </h5>
     </nav>
-    <h1>Vai tomar no cu </h1>
+
+    <!-- Start of Content -->
+    <div class="container my-container">
+        <!-- Overview: Main informations of the report -->
+        <div class="row mt-5">
+            <div class="col-5 new-section">
+                <h4 id="section_1"></h4>
+                <script>
+                    let textSection1 = "Análise Geral em relação ao dia ";
+                    const options_date = {month: '2-digit', day: 'numeric' };
+                    let date = new Date(new Date().setDate(new Date().getDate()-1)).toLocaleDateString("pt-BR", options_date);
+                    document.getElementById('section_1').innerHTML = textSection1 + date;
+                </script>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-6">
+                <span class="font-weight-bold">Bairros com maiores aglomerações:</span>
+                <ul class="dashed mt-2">
+                    <li>Copacabana: ~4500 pessoas</li>
+                    <li>Ipanema/Leblon: ~1300 pessoas</li>
+                    <li>Botafogo: ~1300 pessoas</li>
+                </ul>
+            </div>
+            <div class="col-6">
+                <span class="font-weight-bold">Bairros com maiores variações em relação a média histórica:</span>
+                <ul class="dashed mt-2">
+                    <li>Barra da Tijuca: 85%</li>
+                    <li>Centro: 84%</li>
+                    <li>Ipanema/Leblon: 81%</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-6">
+                <span class="font-weight-bold">Bairros com menores variações em relação a média histórica:</span>
+                <ul class="dashed mt-2">
+                    <li>Botafogo: 60%</li>
+                    <li>Copacabana: 74%</li>
+                    <li>Jacarepaguá: 77%</li>
+                </ul>
+            </div>
+            <div class="col-6">
+                <span class="font-weight-bold">Locais mais frequentados:</span>
+                Av. Sargento de Milícias, Av. Atlântica, Av. Nossa Senhora de Copacabana,  Av. Vieira Souto, R. da Glória,
+                R. Barata Ribeiro
+            </div>
+        </div>
+
+        <!-- Graphical Analysis -->
+        <div class="row mt-2">
+            <div class="col-2 new-section">
+                <h4 id="section_1">
+                    Rio de Janeiro
+                </h4>
+            </div>
+        </div>
+        <div class="row mt-2 justify-content-around">
+            <!-- Image 1 -->
+            <div class="col-5">
+                <img class="image-size-column" src='Images/Rio de Janeiro_media_hora.png' alt="Image 1">
+            </div>
+            <!-- Image 2 -->
+            <div class="col-5">
+                <img class="image-size-column" src='Images/Rio de Janeiro_media_hora_acumulada.png' alt="Image 2">
+            </div>
+        </div>
+        <div class="row mt-2 justify-content-around">
+            <!-- Image 3 -->
+            <div class="col-9">
+                <img class="image-size-column" src='Images/Rio_de_Janeiro_media_dia.png' alt="Image 3">
+            </div>
+        </div>
+
+        <!-- Graphical - General Analysis -->
+        <div class="row mt-2">
+            <div class="col-4 new-section">
+                <h4 id="section_1">
+                    Análise Histórica dos Bairros
+                </h4>
+            </div>
+        </div>
+        <div class="row mt-2 justify-content-around">
+            <!-- Image 4 -->
+            <div class="col-9">
+                <img class="image-size-column" src='Images/Percentual_dia.png' alt="Image 4">
+            </div>
+        </div>
+
+
+    </div>
+
+
 
   </body>
 </html>
