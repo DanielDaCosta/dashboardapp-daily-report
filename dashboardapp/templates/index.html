@@ -7,8 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/javascript" src="interaction.js">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+    <link rel="stylesheet" type="text/javascript" src="{{ url_for('static',filename='interaction.js') }}">
 
     <title>Daily Report</title>
   </head>
@@ -17,7 +17,7 @@
     <!-- Nav Bar -->
     <nav class="navbar navbar-custom">
         <a class="navbar-brand ml-4" href="#">
-            <img src="Images/Logomdpi.png" width="204" height="54" alt="company-logo">
+            <img src="{{ url_for('static',filename='img/Logomdpi.png') }}" width="204" height="54" alt="company-logo">
         </a>
         <!-- Current Date -->
         <h5 id="date_format" class="navbar-text mr-4">
@@ -88,17 +88,17 @@
         <div class="row mt-2 justify-content-around">
             <!-- Image 1 -->
             <div class="col-5">
-                <img class="image-size-column" src='Images/Rio de Janeiro_media_hora.png' alt="Image 1">
+                <img class="image-size-column" src="{{ url_for('static',filename='img/Rio de Janeiro_media_hora.png') }}" alt="Image 1">
             </div>
             <!-- Image 2 -->
             <div class="col-5">
-                <img class="image-size-column" src='Images/Rio de Janeiro_media_hora_acumulada.png' alt="Image 2">
+                <img class="image-size-column" src="{{ url_for('static',filename='img/Rio de Janeiro_media_hora_acumulada.png') }}" alt="Image 2">
             </div>
         </div>
         <div class="row mt-2 justify-content-around">
             <!-- Image 3 -->
             <div class="col-9">
-                <img class="image-size-column" src='Images/Rio_de_Janeiro_media_dia.png' alt="Image 3">
+                <img class="image-size-column" src="{{ url_for('static',filename='img/Rio_de_Janeiro_media_dia.png') }}" alt="Image 3">
             </div>
         </div>
 
@@ -113,7 +113,7 @@
         <div class="row mt-2 justify-content-around">
             <!-- Image 4 -->
             <div class="col-9">
-                <img class="image-size-column" src='Images/Percentual_dia.png' alt="Image 4">
+                <img class="image-size-column" src="{{ url_for('static',filename='img/Percentual_dia.png') }}" alt="Image 4">
             </div>
         </div>
 
