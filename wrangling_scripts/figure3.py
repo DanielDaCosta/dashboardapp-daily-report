@@ -6,7 +6,7 @@ warnings.filterwarnings("ignore")
 
 
 def hourly_cumsum(path_csv):
-    history_hourly = pd.read_csv(f'../data/{path_csv}.csv')
+    history_hourly = pd.read_csv(f'data/{path_csv}.csv')
 
     BAIRROS_FOR_STUDY = ['Rio_de_Janeiro']
 
@@ -76,7 +76,6 @@ def hourly_cumsum(path_csv):
         # width=800,
     ))
     figure_3.update_yaxes(showgrid=True, gridwidth=1, gridcolor='black')
-    figure_3.show()
 
     # Generating Graph 2
     week_now_graph = week_now.loc[week_now['Dia']
@@ -99,8 +98,6 @@ def hourly_cumsum(path_csv):
         # width = 800,
     ))
     figure_4.update_yaxes(showgrid=True, gridwidth=1, gridcolor='black')
-    figure_4.show()
+    return [dict(data=figure_3.data, layout=figure_3.layout),
+            dict(data=figure_4.data, layout=figure_4.layout)]
 
-
-if __name__ == '__main__':
-    hourly_cumsum('20200414_hora')

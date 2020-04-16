@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
     <link rel="stylesheet" type="text/javascript" src="{{ url_for('static',filename='interaction.js') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script> 
 
     <title>Daily Report</title>
   </head>
@@ -87,18 +90,21 @@
         </div>
         <div class="row mt-2 justify-content-around">
             <!-- Image 1 -->
-            <div class="col-5">
-                <img class="image-size-column" src="{{ url_for('static',filename='img/Rio de Janeiro_media_hora.png') }}" alt="Image 1">
+            <div class="col-6">
+                <div id="{{ids[3]}}"></div>
+                <!-- <img class="image-size-column" src="{{ url_for('static',filename='img/Rio de Janeiro_media_hora.png') }}" alt="Image 1"> -->
             </div>
             <!-- Image 2 -->
-            <div class="col-5">
-                <img class="image-size-column" src="{{ url_for('static',filename='img/Rio de Janeiro_media_hora_acumulada.png') }}" alt="Image 2">
+            <div class="col-6">
+                <div id="{{ids[2]}}"></div>
+                <!-- <img class="image-size-column" src="{{ url_for('static',filename='img/Rio de Janeiro_media_hora_acumulada.png') }}" alt="Image 2"> -->
             </div>
         </div>
         <div class="row mt-2 justify-content-around">
             <!-- Image 3 -->
             <div class="col-9">
-                <img class="image-size-column" src="{{ url_for('static',filename='img/Rio_de_Janeiro_media_dia.png') }}" alt="Image 3">
+                <!-- <img class="image-size-column" src="{{ url_for('static',filename='img/Rio_de_Janeiro_media_dia.png') }}" alt="Image 3"> -->
+                <div id="{{ids[0]}}"></div>
             </div>
         </div>
 
@@ -113,14 +119,24 @@
         <div class="row mt-2 justify-content-around">
             <!-- Image 4 -->
             <div class="col-9">
-                <img class="image-size-column" src="{{ url_for('static',filename='img/Percentual_dia.png') }}" alt="Image 4">
+                    <div id="{{ids[1]}}"></div>
+                </div>
             </div>
         </div>
-
-
     </div>
-
-
-
+    <!--footer section-->               
+    <div id="footer" class="container"></div>
   </body>
+
+  <footer>
+    <script type="text/javascript">
+        // plots the figure with id
+        // id much match the div id above in the html
+        const figures = {{ figuresJSON | safe }};
+        const ids = {{ ids | safe }};
+        for(let i in figures) {
+            Plotly.plot(ids[i], figures[i].data, figures[i].layout || {});
+        }
+    </script>
+  </footer>
 </html>

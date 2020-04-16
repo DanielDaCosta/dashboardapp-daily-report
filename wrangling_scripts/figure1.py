@@ -7,7 +7,7 @@ warnings.filterwarnings("ignore")
 
 def daily_average(path_csv):
 
-    history_daily = pd.read_csv(f'../data/{path_csv}.csv')
+    history_daily = pd.read_csv(f'data/{path_csv}.csv')
 
     BAIRROS_FOR_STUDY = ['Rio_de_Janeiro']
 
@@ -33,7 +33,7 @@ def daily_average(path_csv):
 
     # Analysis starts from the last 7 days
     now = datetime.now()
-    start_time = now - timedelta(days=6)
+    start_time = now - timedelta(days=7)
     start_time = start_time.strftime('%Y-%m-%d')
     week_now = history_daily.loc[history_daily['dia'] >= start_time]
     def translate(x): return translate_dayofweek[x]
@@ -55,7 +55,7 @@ def daily_average(path_csv):
 
     # Generating Graph 1
     bairro_graph = 'Rio_de_Janeiro'
-    week_graph = week_now.loc[week_now['bairro'] == bairro_graph]
+    week_graph = week_now.loc[week_now['bairro'] == bairro_graph][:-1]
     figure_1 = go.Figure(
         data=[
             go.Bar(
@@ -84,8 +84,5 @@ def daily_average(path_csv):
         )
     )
     figure_1.update_yaxes(showgrid=True, gridwidth=1, gridcolor='black')
-    figure_1.show()
+    return dict(data=figure_1.data, layout=figure_1.layout)
 
-
-if __name__ == '__main__':
-    daily_average('20200414')

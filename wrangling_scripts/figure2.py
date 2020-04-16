@@ -7,7 +7,7 @@ warnings.filterwarnings("ignore")
 
 def weekly_percentage(path_csv):
 
-    history_daily = pd.read_csv(f'../data/{path_csv}.csv')
+    history_daily = pd.read_csv(f'data/{path_csv}.csv')
 
     BAIRROS_FOR_STUDY = ['barra', 'botafogo', 'centro', 'copacabana',
                          'flamengo', 'ipanema_leblon', 'jacarepagua',
@@ -83,8 +83,4 @@ def weekly_percentage(path_csv):
         # width=800,
     ))
     figure_2.update_yaxes(showgrid=True, gridwidth=1, gridcolor='black')
-    figure_2.show()
-
-
-if __name__ == '__main__':
-    weekly_percentage('20200414')
+    return dict(data=figure_2.data, layout=figure_2.layout)
