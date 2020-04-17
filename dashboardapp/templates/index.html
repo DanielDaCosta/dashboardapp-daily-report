@@ -12,6 +12,9 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script> 
+     <!-- The momentjs library -->
+     <!-- reference Moment.js library -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
 
     <title>Daily Report</title>
   </head>
@@ -40,9 +43,8 @@
                 <h4 id="section_1"></h4>
                 <script>
                     let textSection1 = "Análise Geral em relação ao dia ";
-                    const options_date = {month: '2-digit', day: 'numeric' };
-                    let date = new Date(new Date().setDate(new Date().getDate()-1)).toLocaleDateString("pt-BR", options_date);
-                    document.getElementById('section_1').innerHTML = textSection1 + date;
+                    let date = moment("{{ date }}")
+                    document.getElementById('section_1').innerHTML = textSection1 + date.format("DD/MM");
                 </script>
             </div>
         </div>
@@ -50,17 +52,17 @@
             <div class="col-6">
                 <span class="font-weight-bold">Bairros com maiores aglomerações:</span>
                 <ul class="dashed mt-2">
-                    <li>Copacabana: ~4500 pessoas</li>
-                    <li>Ipanema/Leblon: ~1300 pessoas</li>
-                    <li>Botafogo: ~1300 pessoas</li>
+                        <li>{{ high_aglom.bairro[0] }}: ~{{ high_aglom.pessoas_contadas[0] }} pessoas</li>
+                        <li>{{ high_aglom.bairro[1] }}: ~{{ high_aglom.pessoas_contadas[1] }} pessoas</li>
+                        <li>{{ high_aglom.bairro[2] }}: ~{{ high_aglom.pessoas_contadas[2] }} pessoas</li>
                 </ul>
             </div>
             <div class="col-6">
                 <span class="font-weight-bold">Bairros com maiores variações em relação a média histórica:</span>
                 <ul class="dashed mt-2">
-                    <li>Barra da Tijuca: 85%</li>
-                    <li>Centro: 84%</li>
-                    <li>Ipanema/Leblon: 81%</li>
+                    <li>{{ high_variations.bairro[0] }}: {{ high_variations.queda_proporcional_dia_semana[0] }}%</li>
+                    <li>{{ high_variations.bairro[1] }}: {{ high_variations.queda_proporcional_dia_semana[1] }}%</li>
+                    <li>{{ high_variations.bairro[2] }}: {{ high_variations.queda_proporcional_dia_semana[2] }}%</li>
                 </ul>
             </div>
         </div>
@@ -68,9 +70,9 @@
             <div class="col-6">
                 <span class="font-weight-bold">Bairros com menores variações em relação a média histórica:</span>
                 <ul class="dashed mt-2">
-                    <li>Botafogo: 60%</li>
-                    <li>Copacabana: 74%</li>
-                    <li>Jacarepaguá: 77%</li>
+                    <li>{{ low_variations.bairro[0] }}: {{ low_variations.queda_proporcional_dia_semana[0] }}%</li>
+                    <li>{{ low_variations.bairro[1] }}: {{ low_variations.queda_proporcional_dia_semana[1] }}%</li>
+                    <li>{{ low_variations.bairro[2] }}: {{ low_variations.queda_proporcional_dia_semana[2] }}%</li>
                 </ul>
             </div>
             <div class="col-6">

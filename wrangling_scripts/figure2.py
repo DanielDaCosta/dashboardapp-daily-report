@@ -1,11 +1,19 @@
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import timedelta
 import warnings
 import plotly.graph_objs as go
 warnings.filterwarnings("ignore")
 
 
 def weekly_percentage(path_csv):
+    """Return the weekly average of a specific region
+
+    Params:
+        path_csv (str): CSV path
+
+    Returns:
+        (dict): containing data informations of image
+    """
 
     history_daily = pd.read_csv(f'data/{path_csv}.csv')
 
@@ -31,8 +39,8 @@ def weekly_percentage(path_csv):
     history_daily['dia'] = pd.to_datetime(history_daily['dia'])
     history_daily['day_of_week'] = history_daily['dia'].dt.day_name()
 
-    now = datetime.now()
-    start_time = now - timedelta(days=21)
+    last_record = max(history_daily['dia'])
+    start_time = last_record - timedelta(days=21)
     start_time = start_time.strftime('%Y-%m-%d')
     week_now = history_daily.loc[history_daily['dia'] >= start_time]
     # Reduction in relation to the historical average
