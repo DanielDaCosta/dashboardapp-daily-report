@@ -17,23 +17,11 @@ def hourly_cumsum(path_csv):
 
     history_hourly = pd.read_csv(f'data/{path_csv}.csv')
 
-    BAIRROS_FOR_STUDY = ['Rio_de_Janeiro']
-
-    correct_form_bairro = {'barra': 'Barra da Tijuca', 'botafogo': 'Botafogo',
-                           'centro': 'Centro', 'copacabana': 'Copacabana',
-                           'flamengo': 'Flamengo',
-                           'ipanema_leblon': 'Ipanema/Leblon',
-                           'jacarepagua': 'Jacarepaguá',
-                           'Rio_de_Janeiro': 'Rio de Janeiro',
-                           'sem_bairro': 'Outros',
-                           'tijuca': 'Tijuca'}
+    BAIRROS_FOR_STUDY = ['San Francisco']
 
     # Analyze Bairro in BAIRROS_FOR_STUDY
     history_hourly = history_hourly.loc[history_hourly['bairro']
                                         .isin(BAIRROS_FOR_STUDY)]
-
-    def correct_name(x): return correct_form_bairro[x]
-    history_hourly['bairro'] = history_hourly.bairro.apply(correct_name)
 
     # Data Preprocessing
     history_hourly['hora'] = history_hourly\
@@ -63,7 +51,7 @@ def hourly_cumsum(path_csv):
     last_last_week_day = last_last_week_day.strftime('%Y-%m-%d')
     today_now = last_record.strftime('%Y-%m-%d')
     last_hour = last_record.strftime('%Y-%m-%d %H:00:00')
-    bairro_graph = 'Rio de Janeiro'
+    bairro_graph = 'San Francisco'
     week_now_graph = week_now.loc[(week_now['bairro'] == bairro_graph)
                                   & (week_now['day']
                                      .isin([last_week_day, last_last_week_day,
@@ -80,9 +68,9 @@ def hourly_cumsum(path_csv):
             name=dia
         ))
     figure_3.update_layout(go.Layout(
-        title="Média Acumulada de Pessoas Contadas por Hora",
+        title="Accumulated Average People Counted per Hour",
         title_x=0.5,
-        yaxis_title="Média Acumulada de Pessoas",
+        yaxis_title="Accumulated Average Number of People",
         plot_bgcolor="rgba(0,0,0,0)",
         # width=800,
     ))
@@ -102,9 +90,9 @@ def hourly_cumsum(path_csv):
     ))
 
     figure_4.update_layout(go.Layout(
-        title=f'{bairro_graph} {DAY}: Média de Pessoas por Hora',
+        title=f'{bairro_graph} {DAY}: Average Number of People per Hour',
         title_x=0.5,
-        yaxis_title="Pessoas Contadas",
+        yaxis_title="Counted People",
         plot_bgcolor="rgba(0,0,0,0)",
         # width = 800,
     ))

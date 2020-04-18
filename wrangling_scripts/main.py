@@ -12,12 +12,12 @@ def return_data():
     Returns:
         (array): containing data informations of image
     """
-    path_csv = '20200416'
+    path_csv = '20200416_2'
     figures = []
     dict_results = daily_average(path_csv)
     figures.append(dict_results['figure'])
     figures.append(weekly_percentage(path_csv))
-    path_csv = '20200416_hora'
+    path_csv = '20200416_hora_2'
     figures_hours = hourly_cumsum(path_csv)
     for fig_hour in figures_hours:
         figures.append(fig_hour)

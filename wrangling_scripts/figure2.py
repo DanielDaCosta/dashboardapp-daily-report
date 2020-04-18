@@ -17,18 +17,19 @@ def weekly_percentage(path_csv):
 
     history_daily = pd.read_csv(f'data/{path_csv}.csv')
 
-    BAIRROS_FOR_STUDY = ['barra', 'botafogo', 'centro', 'copacabana',
-                         'flamengo', 'ipanema_leblon', 'jacarepagua',
-                         'Rio_de_Janeiro', 'sem_bairro', 'tijuca']
+    BAIRROS_FOR_STUDY = ['Haight-Ashbury', 'San Francisco', 'The Castro',
+                         'Others', 'Union Square', 'Chinatown',
+                         'Alamo Square', 'Mission District',
+                         'SoMa', 'Fisherman’s wharf']
 
-    correct_form_bairro = {'barra': 'Barra da Tijuca', 'botafogo': 'Botafogo',
-                           'centro': 'Centro', 'copacabana': 'Copacabana',
-                           'flamengo': 'Flamengo',
-                           'ipanema_leblon': 'Ipanema/Leblon',
-                           'jacarepagua': 'Jacarepaguá',
-                           'Rio_de_Janeiro': 'Rio de Janeiro',
-                           'sem_bairro': 'Outros',
-                           'tijuca': 'Tijuca'}
+    # correct_form_bairro = {'barra': 'Barra da Tijuca', 'botafogo': 'Botafogo',
+    #                        'centro': 'Centro', 'copacabana': 'Copacabana',
+    #                        'flamengo': 'Flamengo',
+    #                        'ipanema_leblon': 'Ipanema/Leblon',
+    #                        'jacarepagua': 'Jacarepaguá',
+    #                        'Rio_de_Janeiro': 'Rio de Janeiro',
+    #                        'sem_bairro': 'Outros',
+    #                        'tijuca': 'Tijuca'}
 
     history_daily = history_daily.loc[history_daily['bairro']
                                       .isin(BAIRROS_FOR_STUDY)]
@@ -56,8 +57,8 @@ def weekly_percentage(path_csv):
     new_list.remove(max(new_list))
     bairros_for_graph = week_now\
         .loc[(week_now['dia'] == max(new_list))
-             & (week_now['Bairro'] != 'Rio de Janeiro')
-             & (week_now['Bairro'] != 'Outros')]\
+             & (week_now['Bairro'] != 'San Francisco')
+             & (week_now['Bairro'] != 'Others')]\
         .sort_values(by='queda_proporcional_dia_semana', ascending=True)\
         .Bairro.unique()
 
@@ -80,13 +81,13 @@ def weekly_percentage(path_csv):
             y=week_graph.loc[week_graph['Bairro'] == bairro]
             ['queda_proporcional_dia_semana'],
             mode='lines+markers',
-            name=correct_form_bairro[bairro]
+            name=bairro
         ))
     figure_2.update_layout(go.Layout(
-        title='Redução em relação a Média Histórica',
+        title='Reduction in relation to the Average History',
         title_x=0.5,
-        yaxis_title="Redução (%)",
-        xaxis_title="IsoWeek - Dia de Início da Semana",
+        yaxis_title="Reduction (%)",
+        xaxis_title="IsoWeek - First Day of Week",
         plot_bgcolor="rgba(0,0,0,0)",
         # width=800,
     ))

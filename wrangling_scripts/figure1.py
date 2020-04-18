@@ -21,23 +21,10 @@ def daily_average(path_csv):
 
     history_daily = pd.read_csv(f'data/{path_csv}.csv')
 
-    BAIRROS_FOR_STUDY = ['barra', 'botafogo', 'centro', 'copacabana',
-                         'flamengo', 'ipanema_leblon', 'jacarepagua',
-                         'Rio_de_Janeiro', 'sem_bairro', 'tijuca']
-
-    correct_form_bairro = {'barra': 'Barra da Tijuca', 'botafogo': 'Botafogo',
-                           'centro': 'Centro', 'copacabana': 'Copacabana',
-                           'flamengo': 'Flamengo',
-                           'ipanema_leblon': 'Ipanema/Leblon',
-                           'jacarepagua': 'Jacarepaguá',
-                           'Rio_de_Janeiro': 'Rio de Janeiro',
-                           'sem_bairro': 'Outros',
-                           'tijuca': 'Tijuca'}
-    translate_dayofweek = {'Monday': 'Segunda', 'Tuesday': 'Terça',
-                           'Wednesday': 'Quarta', 'Thursday': 'Quinta',
-                           'Friday': 'Sexta',
-                           'Saturday': 'Sábado',
-                           'Sunday': 'Domingo'}
+    BAIRROS_FOR_STUDY = ['Haight-Ashbury', 'San Francisco', 'The Castro',
+                         'Others', 'Union Square', 'Chinatown',
+                         'Alamo Square', 'Mission District',
+                         'SoMa', 'Fisherman’s wharf']
 
     # Data Preprocessing
     history_daily = history_daily.loc[history_daily['bairro']
@@ -50,8 +37,6 @@ def daily_average(path_csv):
     start_time = last_record - timedelta(days=7)
     start_time = start_time.strftime('%Y-%m-%d')
     week_now = history_daily.loc[history_daily['dia'] >= start_time]
-    def translate(x): return translate_dayofweek[x]
-    week_now['day_of_week'] = week_now.day_of_week.apply(translate)
     week_now['Dia'] = week_now['dia'].apply(lambda x: str(x.strftime('%d/%m')))
 
     # Legend
@@ -64,15 +49,15 @@ def daily_average(path_csv):
         + week_now['day_of_week_initial']
 
     # Generating Graph 1
-    bairro_graph = 'Rio_de_Janeiro'
+    bairro_graph = 'San Francisco'
     week_graph = week_now.loc[week_now['bairro'] == bairro_graph][:-1]
     week_graph.rename(columns={'pessoas_contadas': 'Pessoas Contadas',
-                             'media_pessoas_contadas':
-                             'Média do Dia da Semana'}, inplace=True)
+                               'media_pessoas_contadas':
+                               'Média do Dia da Semana'}, inplace=True)
     figure_1 = go.Figure(
         data=[
             go.Bar(
-                name="Pessos Contadas",
+                name="Counted People",
                 x=week_graph['day_of_week_legend'],
                 y=week_graph['Pessoas Contadas'],
                 text=week_graph[('proporcao_relacao_'
@@ -81,17 +66,17 @@ def daily_average(path_csv):
                 offsetgroup=0
             ),
             go.Bar(
-                name="Média do Dia da Semana",
+                name="Average Day of Week",
                 x=week_graph['day_of_week_legend'],
                 y=week_graph['Média do Dia da Semana'],
                 offsetgroup=1
             )
         ],
         layout=go.Layout(
-            title=(f'{correct_form_bairro[bairro_graph]}:'
-                   'Média de Pessoas por Dia'),
+            title=(f'{bairro_graph}:'
+                   'Average Number of People Per Day'),
             title_x=0.5,
-            yaxis_title="Pessoas Contadas",
+            yaxis_title="Population",
             plot_bgcolor='rgba(0,0,0,0)',
             # width=800,
         )
@@ -107,8 +92,7 @@ def daily_average(path_csv):
                                                        'sem_bairro'])),
                               columns].sort_values(by='pessoas_contadas',
                                                    ascending=False)[:3]
-    high_aglom['bairro'] = high_aglom.bairro\
-        .apply(lambda x: correct_form_bairro[x])
+    high_aglom['pessoas_contadas'] = high_aglom.pessoas_contadas.apply(lambda x: round(x))
     high_aglom = high_aglom.to_dict('list')
 
     # General Analysis: Neighborhoods with the greatest variations
@@ -120,8 +104,8 @@ def daily_average(path_csv):
         .loc[(week_now['dia'] == last_day)
              & (~week_now.bairro.isin(['Rio_de_Janeiro', 'sem_bairro'])),
              columns].sort_values(by='queda_proporcional_dia_semana')[:3]
-    low_variations['bairro'] = low_variations.bairro\
-        .apply(lambda x: correct_form_bairro[x])
+    low_variations['queda_proporcional_dia_semana'] = low_variations\
+        .queda_proporcional_dia_semana.apply(lambda x: round(x))
     low_variations = low_variations.to_dict('list')
 
     # General Analysis: Neighborhoods with the smallest variations
@@ -132,11 +116,11 @@ def daily_average(path_csv):
     last_day = week_now.dia.unique()[-2]
     high_variations = week_now\
         .loc[(week_now['dia'] == last_day)
-             & (~week_now.bairro.isin(['Rio_de_Janeiro', 'sem_bairro'])),
+             & (~week_now.bairro.isin(['San Francisco', 'Others'])),
              columns].sort_values(by='queda_proporcional_dia_semana',
                                   ascending=False)[:3]
-    high_variations['bairro'] = high_variations.bairro\
-        .apply(lambda x: correct_form_bairro[x])
+    high_variations['queda_proporcional_dia_semana'] = high_variations\
+        .queda_proporcional_dia_semana.apply(lambda x: round(x))
     high_variations = high_variations.to_dict('list')
 
     # Results
@@ -147,3 +131,9 @@ def daily_average(path_csv):
                'date_string': last_day.strftime('%Y-%m-%d')}
 
     return results
+
+
+# if __name__ == '__main__':
+#     path_csv = '20200416_2'
+#     figures = []
+#     dict_results = daily_average(path_csv)

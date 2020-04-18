@@ -25,7 +25,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand ml-15" href="#">
-                    <img src="{{ url_for('static',filename='img/Logomdpi.png') }}" width="204" height="54" alt="company-logo">
+                    <img src="{{ url_for('static',filename='img/githublogo.png') }}" width="54" height="54" alt="company-logo">
                 </a>
             </div>
             <!-- Filter Button -->
@@ -34,7 +34,7 @@
             <h5 id="date_format" class="navbar-text mr-4">
                 <script>
                     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                    let date_string = new Date().toLocaleDateString("pt-BR", options);
+                    let date_string = new Date().toLocaleDateString("en-US", options);
                     document.write(date_string.charAt(0).toUpperCase() + date_string.slice(1)); 
                 </script>
             </h5>
@@ -48,15 +48,15 @@
             <div class="col-5 new-section">
                 <h4 id="section_1"></h4>
                 <script>
-                    let textSection1 = "Análise Geral em relação ao dia ";
+                    let textSection1 = "General Analysis in relation to ";
                     let date = moment("{{ date }}")
-                    document.getElementById('section_1').innerHTML = textSection1 + date.format("DD/MM");
+                    document.getElementById('section_1').innerHTML = textSection1 + date.format("MM/DD");
                 </script>
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-6">
-                <span class="font-weight-bold">Bairros com maiores aglomerações:</span>
+                <span class="font-weight-bold">Neighborhoods with greater agglomerations:</span>
                 <ul class="dashed mt-2">
                         <li>{{ high_aglom.bairro[0] }}: ~{{ high_aglom.pessoas_contadas[0] }} pessoas</li>
                         <li>{{ high_aglom.bairro[1] }}: ~{{ high_aglom.pessoas_contadas[1] }} pessoas</li>
@@ -64,7 +64,7 @@
                 </ul>
             </div>
             <div class="col-6">
-                <span class="font-weight-bold">Bairros com maiores variações em relação a média histórica:</span>
+                <span class="font-weight-bold">Neighborhoods with greater variations in relation to the historical average:</span>
                 <ul class="dashed mt-2">
                     <li>{{ high_variations.bairro[0] }}: {{ high_variations.queda_proporcional_dia_semana[0] }}%</li>
                     <li>{{ high_variations.bairro[1] }}: {{ high_variations.queda_proporcional_dia_semana[1] }}%</li>
@@ -74,7 +74,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-6">
-                <span class="font-weight-bold">Bairros com menores variações em relação a média histórica:</span>
+                <span class="font-weight-bold">Neighborhoods with smaller variations in relation to the historical average:</span>
                 <ul class="dashed mt-2">
                     <li>{{ low_variations.bairro[0] }}: {{ low_variations.queda_proporcional_dia_semana[0] }}%</li>
                     <li>{{ low_variations.bairro[1] }}: {{ low_variations.queda_proporcional_dia_semana[1] }}%</li>
@@ -82,9 +82,9 @@
                 </ul>
             </div>
             <div class="col-6">
-                <span class="font-weight-bold">Locais mais frequentados:</span>
-                Av. Sargento de Milícias, Av. Atlântica, Av. Nossa Senhora de Copacabana,  Av. Vieira Souto, R. da Glória,
-                R. Barata Ribeiro
+                <span class="font-weight-bold">Most frequented places:</span>
+                Lombard Street, Market Street, Valencia Street, Castro Street, Haight Street,
+                Chestnut Street, Hayes Street, Divisadero Street
             </div>
         </div>
 
@@ -92,7 +92,7 @@
         <div class="row mt-2">
             <div class="col-2 new-section">
                 <h4 id="section_1">
-                    Rio de Janeiro
+                    San Francisco
                 </h4>
             </div>
         </div>
@@ -100,27 +100,24 @@
             <!-- Image 1 -->
             <div class="col-6">
                 <div id="{{ids[3]}}"></div>
-                <!-- <img class="image-size-column" src="{{ url_for('static',filename='img/Rio de Janeiro_media_hora.png') }}" alt="Image 1"> -->
             </div>
             <!-- Image 2 -->
             <div class="col-6">
                 <div id="{{ids[2]}}"></div>
-                <!-- <img class="image-size-column" src="{{ url_for('static',filename='img/Rio de Janeiro_media_hora_acumulada.png') }}" alt="Image 2"> -->
             </div>
         </div>
         <div class="row mt-2 justify-content-around">
             <!-- Image 3 -->
             <div class="col-9">
-                <!-- <img class="image-size-column" src="{{ url_for('static',filename='img/Rio_de_Janeiro_media_dia.png') }}" alt="Image 3"> -->
                 <div id="{{ids[0]}}"></div>
             </div>
         </div>
 
         <!-- Graphical - General Analysis -->
         <div class="row mt-2">
-            <div class="col-4 new-section">
+            <div class="col-5 new-section">
                 <h4 id="section_1">
-                    Análise Histórica dos Bairros
+                    Historical Analysis of Neighborhoods
                 </h4>
             </div>
         </div>
