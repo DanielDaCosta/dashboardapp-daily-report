@@ -52,4 +52,4 @@ The webapp is still on its early days and there are improvements to make. If you
 
 # Acknowledgements
 
-- The webapp was deployed using[Heroku] (https://dashboard.heroku.com) free trial.
+- The webapp was deployed using [Heroku](https://dashboard.heroku.com) free trial.
