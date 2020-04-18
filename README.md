@@ -8,6 +8,8 @@ You can check the web app here:
 
 https://dashboard-report-daily.herokuapp.com
 
+<img src="Images/Dashboard_2.png" width="1000">
+<img src="Images/Dashboard_1.png" width="1000">
 
 
 ## Usage
@@ -52,4 +54,4 @@ The webapp is still on its early days and there are improvements to make. If you
 
 # Acknowledgements
 
-- The webapp was deployed using [Heroku](https://dashboard.heroku.com) free trial.
+- The webapp was deployed using [Heroku](https://dashboard.heroku.com).
