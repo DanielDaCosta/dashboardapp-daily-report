@@ -22,17 +22,23 @@
   <body>
     <!-- Nav Bar -->
     <nav class="navbar navbar-custom">
-        <a class="navbar-brand ml-4" href="#">
-            <img src="{{ url_for('static',filename='img/Logomdpi.png') }}" width="204" height="54" alt="company-logo">
-        </a>
-        <!-- Current Date -->
-        <h5 id="date_format" class="navbar-text mr-4">
-            <script>
-                 let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                 let date_string = new Date().toLocaleDateString("pt-BR", options);
-                 document.write(date_string.charAt(0).toUpperCase() + date_string.slice(1)); 
-            </script>
-        </h5>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand ml-15" href="#">
+                    <img src="{{ url_for('static',filename='img/Logomdpi.png') }}" width="204" height="54" alt="company-logo">
+                </a>
+            </div>
+            <!-- Filter Button -->
+                
+            <!-- Current Date -->
+            <h5 id="date_format" class="navbar-text mr-4">
+                <script>
+                    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                    let date_string = new Date().toLocaleDateString("pt-BR", options);
+                    document.write(date_string.charAt(0).toUpperCase() + date_string.slice(1)); 
+                </script>
+            </h5>
+        </div>
     </nav>
 
     <!-- Start of Content -->
