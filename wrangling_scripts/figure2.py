@@ -22,14 +22,6 @@ def weekly_percentage(path_csv):
                          'Alamo Square', 'Mission District',
                          'SoMa', 'Fisherman’s wharf']
 
-    # correct_form_bairro = {'barra': 'Barra da Tijuca', 'botafogo': 'Botafogo',
-    #                        'centro': 'Centro', 'copacabana': 'Copacabana',
-    #                        'flamengo': 'Flamengo',
-    #                        'ipanema_leblon': 'Ipanema/Leblon',
-    #                        'jacarepagua': 'Jacarepaguá',
-    #                        'Rio_de_Janeiro': 'Rio de Janeiro',
-    #                        'sem_bairro': 'Outros',
-    #                        'tijuca': 'Tijuca'}
 
     history_daily = history_daily.loc[history_daily['bairro']
                                       .isin(BAIRROS_FOR_STUDY)]
