@@ -1,4 +1,4 @@
-# Dashboard App
+# Dashboard Web Appplication
 
 A dashboard app example for building your own daily report. This webapp displays graphs for visual analysis and also a section with the most important informations of the daily report.
 
